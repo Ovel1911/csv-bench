@@ -39,21 +39,18 @@ void Die(const char *msg) {
 	exit(1);
 }
 
-struct Entry
-{
+struct Entry {
 	unsigned int prio;
 	char data[16];
 };
 
-bool operator < (const Entry &a, const Entry &b)
-{
+bool operator < (const Entry &a, const Entry &b) {
 	if (a.prio != b.prio)
 		return a.prio > b.prio;
 	return strcmp(a.data, b.data) > 0;
 }
 
-inline bool issp(char c)
-{
+inline bool issp(char c) {
 	return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 }
 
