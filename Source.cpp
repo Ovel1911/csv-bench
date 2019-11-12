@@ -46,8 +46,8 @@ struct Entry {
 
 bool operator < (const Entry &a, const Entry &b) {
 	if (a.prio != b.prio)
-		return a.prio > b.prio;
-	return strcmp(a.data, b.data) > 0;
+		return a.prio < b.prio;
+	return strcmp(a.data, b.data) < 0;
 }
 
 inline bool issp(char c) {
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
 		}
 		
 		//skipping everything till next numbers' start
-		if (chart_filled && chart.top().prio >= v) {
+		if (chart_filled && chart.top().prio <= v) {
 			uint32_t mask = 0;
 			if (p - strt > 16) {
 				for (; mask == 0; p -= 16) {
