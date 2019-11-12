@@ -153,9 +153,17 @@ int main(int argc, char **argv) {
 	FILE *fp2 = fopen(argv[2], "wb+");
 	if (!fp2)
 		Die("write failed");
+
+	std::vector<Entry> result;
+	result.reserve(100);
+
 	while (!chart.empty()) {
-		fprintf(fp2, "%s, %u\n", chart.top().data, chart.top().prio);
+		result.push_back(chart.top());
 		chart.pop();
+	}
+
+	for (auto It = result.rbegin(); It != result.rend(); It++) {
+		fprintf(fp2, "%s, %u\n", It->data, It->prio);
 	}
 
 	close(fd);
